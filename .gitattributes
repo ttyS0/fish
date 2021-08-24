@@ -1,0 +1,1 @@
+conf.d/private.fish filter=git-crypt diff=git-crypt
