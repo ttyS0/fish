@@ -27,11 +27,6 @@ set -x GOPATH ~/Programming/Go
 set -x AWS_REGION us-east-1
 set -x AWS_DEFAULT_REGION us-east-1
 set -x NOMAD_ADDR 'https://nomad.ttys0.net'
+set -x GPG_TTY (tty) # fix GPG signing with git
 
-
-# GNUPG
-set -x GPG_TTY (tty)
-if test -x (type -p gpgconf)
-  command gpgconf --launch gpg-agent
-end
 
