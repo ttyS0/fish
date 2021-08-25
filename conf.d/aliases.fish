@@ -29,5 +29,5 @@ abbr gpl 'git pull'
 abbr gph 'git push'
 abbr gb 'git branch -a'
 abbr gs 'git status'
-abbr gplr 'git pull --recurse submodules'
+abbr gplS 'git pull --recurse submodules'
 
