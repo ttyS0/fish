@@ -1,7 +1,20 @@
 if status is-interactive
-    [ -x (type -p direnv) ]; and direnv hook fish | source
 
-    [ -f /usr/local/share/autojump/autojump.fish ]; and source /usr/local/share/autojump/autojump.fish
+  if test -x (type -p direnv)
+    direnv hook fish | source
+  end
+
+  switch (uname | string lower)
+    case linux
+      if test -f /usr/share/autojump/autojump.fish
+        source /usr/share/autojump/autojump.fish
+      end
+    case darwin
+      if test -f /usr/local/share/autojump/autojump.fish
+        source /usr/local/share/autojump/autojump.fish
+      end
+  end
+
 end
 
 
@@ -14,11 +27,11 @@ set -x GOPATH ~/Programming/Go
 set -x AWS_REGION us-east-1
 set -x AWS_DEFAULT_REGION us-east-1
 set -x NOMAD_ADDR 'https://nomad.ttys0.net'
-set -x GPG_TTY (tty)
 
-# Aliases
-alias k kubectl
-alias h helm
-alias tf terraform
-alias hr 'history --merge'
+
+# GNUPG
+set -x GPG_TTY (tty)
+if test -x (type -p gpgconf)
+  command gpgconf --launch gpg-agent
+end
 
