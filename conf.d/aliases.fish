@@ -2,9 +2,10 @@
 # General
 
 abbr k kubectl
-abbr h helm
+abbr hl helm
 abbr tf terraform
 abbr hr 'history --merge' # consolidate session histories
+abbr h history
 abbr .. 'cd ..' # up one
 abbr lns 'ln -s' # slightly shorter symlink
 abbr less "less -MNi" # file info/position, line #'s, smart case
@@ -19,6 +20,8 @@ if test (uname | string lower) = "darwin"
   abbr bu 'brew upgrade'
   abbr bs 'brew search'
   abbr bn 'brew info'
+  abbr pbc 'pbcopy'
+  abbr pbp 'pbpaste'
 end
 
 # Linux specific
@@ -39,6 +42,7 @@ abbr gph 'git push'
 abbr gb 'git branch -a'
 abbr gs 'git status'
 abbr gplS 'git pull --recurse submodules'
+abbr gm 'git merge'
 
 # Docker
 abbr d docker
@@ -47,5 +51,8 @@ abbr dpa 'docker ps -a'
 abbr db 'docker build'
 abbr dbx 'docker buildx build --platform linux/arm64,linux/amd64'
 abbr dph 'docker push'
+abbr dl 'docker logs'
 
-
+# URL encode/decode
+abbr urlencode 'python -c "import urllib, sys; print urllib.quote_plus(sys.argv[1])"'
+abbr urldecode 'python -c "import urllib, sys; print urllib.unquote_plus(sys.argv[1])"'
