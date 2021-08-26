@@ -49,13 +49,6 @@ function awscreds -d "generate aws credentials for specific profiles"
   end
 
   if test $_flag_console
-    if test -x (type -p aws_url)
-      set aws_url (type -p aws_url)
-    else
-      echo "ERROR: requires https://github.com/vumc-cloud/CloudServices-Scripts/blob/master/Python/AWS/aws_console_login.py to be in PATH as 'aws_url'"
-      exit 1
-    end
-
     set time_unit (string match -r '.$' $_flag_ttl)
     set time_int (string trim -c $time_unit $_flag_ttl)
 
@@ -69,7 +62,7 @@ function awscreds -d "generate aws credentials for specific profiles"
     end
 
     set tmpdir (mktemp -d /tmp/awsfox_userdata.XXXXXXXXXX)
-    set login_url (command $aws_url --url $fqdn --role $vault_aws_role --mount $secrets_engine --ttl $ttl --token_name $token_name)
+    set login_url ($__fish_config_dir/scripts/aws_url.py --url $fqdn --role $vault_aws_role --mount $secrets_engine --ttl $ttl --token_name $token_name)
 
     command mkdir -p $tmpdir
     /Applications/Firefox.app/Contents/MacOS/firefox \
