@@ -22,6 +22,7 @@ if test (uname | string lower) = "darwin"
   abbr bn 'brew info'
   abbr pbc 'pbcopy'
   abbr pbp 'pbpaste'
+  abbr flushdns 'sudo killall -HUP mDNSResponder ;sudo dscacheutil -flushcache'
 end
 
 # Linux specific
@@ -56,3 +57,6 @@ abbr dl 'docker logs'
 # URL encode/decode
 abbr urlencode 'python -c "import urllib, sys; print urllib.quote_plus(sys.argv[1])"'
 abbr urldecode 'python -c "import urllib, sys; print urllib.unquote_plus(sys.argv[1])"'
+
+# Databases
+abbr psql 'psql -h pg.ttys0.net -U postgres'
