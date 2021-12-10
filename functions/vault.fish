@@ -8,7 +8,7 @@ function vault -d "multi vault instance handler"
 
   switch $instance
     case tokens
-      for v in vumc home smaug
+      for v in vumc home
         _vault_generate_token $v
       end
     case vumc
@@ -28,15 +28,6 @@ function vault -d "multi vault instance handler"
       end
 
       command env VAULT_ADDR=https://(_vault_fqdn $instance) VAULT_TOKEN=$HOME_VAULT_TOKEN $vault_bin $argv
-
-    case smaug
-      if set -q SMAUG_VAULT_TOKEN
-        _vault_generate_token $instance
-      else
-        _vault_token_check $instance $SMAUG_VAULT_TOKEN
-      end
-
-      command env VAULT_ADDR=https://(_vault_fqdn $instance) VAULT_TOKEN=$SMAUG_VAULT_TOKEN $vault_bin $argv
 
     case "*"
       command $vault_bin $argv
@@ -62,12 +53,6 @@ function _vault_generate_token -d "generates vault token"
       set user (command whoami)
 
       set -gx HOME_VAULT_TOKEN (command $vault_bin login -field token -address=https://$vault_fqdn -method=userpass username=$user password=(command security find-generic-password -a $user -s $vault_fqdn -w))
-
-    case smaug
-      set vault_fqdn (_vault_fqdn smaug)
-      set user (command whoami)
-
-      set -gx SMAUG_VAULT_TOKEN (command $vault_bin login -field token -address=https://$vault_fqdn -method=userpass username=$user password=(command security find-generic-password -a $user -s (_vault_fqdn home) -w))
 
   end
 
@@ -98,9 +83,7 @@ function _vault_fqdn -d "maps vault instance name to fqdn"
     case vumc
       echo "vault.cloudservices.aws.vumc.cloud"
     case home
-      echo "vault.ttys0.net"
-    case smaug
-      echo "smaug.ttys0.net"
+      echo "vault.skj.dev"
     case "*"
       echo "none"
   end
