@@ -8,8 +8,8 @@ function awscreds -d "generate aws credentials for specific profiles"
   argparse --name=awscreds $options -- $argv
 
   if set -q $_flag_ttl
-    set _flag_ttl 15m
-    set _flag_t 15m
+    set _flag_ttl 1h
+    set _flag_t 1h
   end
 
   switch $_flag_instance

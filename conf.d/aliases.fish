@@ -2,7 +2,8 @@
 # General
 
 abbr k kubectl
-abbr hl helm
+abbr kz kustomize
+abbr hm helm
 abbr tf terraform
 abbr hr 'history --merge' # consolidate session histories
 abbr h history

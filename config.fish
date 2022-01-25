@@ -1,6 +1,5 @@
 if status is-interactive
-
-  if test -x (type -p direnv)
+  if test (uname | string lower) = "darwin"; and test -x (type -p direnv)
     direnv hook fish | source
   end
 
@@ -23,10 +22,9 @@ set -g fish_color_command d2bfff
 
 # Exported Variables
 set -x CEPH_VERSION v16.2.6
-set -x GOPATH ~/Programming/Go
+set -x GOPATH ~/Code/Go
 set -x AWS_REGION us-east-1
 set -x AWS_DEFAULT_REGION us-east-1
-set -x NOMAD_ADDR 'https://nomad.ttys0.net'
 set -x GPG_TTY (tty) # fix GPG signing with git
-
+set -x OPENFAAS_URL https://gw.skj.dev
 
