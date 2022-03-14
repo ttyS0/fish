@@ -3,6 +3,7 @@
 
 abbr k kubectl
 abbr kz kustomize
+abbr kza 'kustomize build | kubectl apply -f -'
 abbr hm helm
 abbr tf terraform
 abbr hr 'history --merge' # consolidate session histories
