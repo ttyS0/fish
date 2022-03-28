@@ -21,7 +21,6 @@ end
 set -g fish_color_command d2bfff
 
 # Exported Variables
-set -x CEPH_VERSION v16.2.6
 set -x GOPATH ~/Code/Go
 set -x AWS_REGION us-east-1
 set -x AWS_DEFAULT_REGION us-east-1
