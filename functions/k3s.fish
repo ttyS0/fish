@@ -1,3 +1,3 @@
-function k3s --wraps='kubectl --kubeconfig=/Users/sean/.kube/elrond' --description 'alias k3s kubectl --kubeconfig=/Users/sean/.kube/elrond'
-  kubectl --kubeconfig=/Users/sean/.kube/elrond $argv; 
+function k3s --wraps='kubectl --kubeconfig=/Users/sean/.kube/locutus' --description 'alias k3s kubectl --kubeconfig=/Users/sean/.kube/locutus'
+  kubectl --kubeconfig=/Users/sean/.kube/locutus $argv; 
 end

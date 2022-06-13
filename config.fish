@@ -26,4 +26,4 @@ set -x AWS_REGION us-east-1
 set -x AWS_DEFAULT_REGION us-east-1
 set -x GPG_TTY (tty) # fix GPG signing with git
 set -x OPENFAAS_URL https://gw.skj.dev
-
+set -x SSH_AUTH_SOCK "~/.1password/agent.sock"

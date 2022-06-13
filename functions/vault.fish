@@ -1,14 +1,14 @@
 function vault -d "multi vault instance handler"
   set vault_bin (type -p -f vault)
 
-  if test ( string match -r 'vumc|home|smaug|tokens' $argv[1] )
+  if test ( string match -r 'vumc|skj|spock|tokens' $argv[1] )
     set instance $argv[1]
     set -e argv[1]
   end
 
   switch $instance
     case tokens
-      for v in vumc home
+      for v in vumc
         _vault_generate_token $v
       end
     case vumc
@@ -20,7 +20,7 @@ function vault -d "multi vault instance handler"
 
       command env VAULT_ADDR=https://(_vault_fqdn $instance) VAULT_TOKEN=$VUMC_VAULT_TOKEN $vault_bin $argv
 
-    case home
+    case skj
       if set -q HOME_VAULT_TOKEN
         _vault_generate_token $instance
       else
@@ -48,7 +48,7 @@ function _vault_generate_token -d "generates vault token"
 
       set -gx VUMC_VAULT_TOKEN (command $awsvault exec $aws_profile -- $vault_bin login -field=token -method aws -path=$vault_aws_path -address=https://$vault_fqdn header_value=$vault_fqdn role=$vault_aws_role)
 
-    case home
+    case skj
       set vault_fqdn (_vault_fqdn home)
       set user (command whoami)
 
