@@ -28,7 +28,7 @@ function awscreds -d "generate aws credentials for specific profiles"
       set vtoken $VUMC_VAULT_TOKEN
       set token_name VUMC_VAULT_TOKEN
 
-    case home
+    case skj
       set secrets_engine aws
       set vault_aws_role admin
       set fqdn (_vault_fqdn $_flag_instance)
