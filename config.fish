@@ -9,8 +9,8 @@ if status is-interactive
         source /usr/share/autojump/autojump.fish
       end
     case darwin
-      if test -f /usr/local/share/autojump/autojump.fish
-        source /usr/local/share/autojump/autojump.fish
+      if test -f /opt/homebrew/share/autojump/autojump.fish
+        source /opt/homebrew/share/autojump/autojump.fish
       end
   end
 

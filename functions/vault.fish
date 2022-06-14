@@ -1,14 +1,14 @@
 function vault -d "multi vault instance handler"
   set vault_bin (type -p -f vault)
 
-  if test ( string match -r 'vumc|skj|spock|tokens' $argv[1] )
+  if test ( string match -r 'vumc|skj|tokens' $argv[1] )
     set instance $argv[1]
     set -e argv[1]
   end
 
   switch $instance
     case tokens
-      for v in vumc
+      for v in skj vumc
         _vault_generate_token $v
       end
     case vumc
@@ -41,7 +41,7 @@ function _vault_generate_token -d "generates vault token"
 
   switch $argv[1]
     case vumc
-      set aws_profile payer-admin
+      set aws_profile payer
       set vault_aws_path aws
       set vault_aws_role cloudservices-admin
       set vault_fqdn (_vault_fqdn vumc)
@@ -49,10 +49,10 @@ function _vault_generate_token -d "generates vault token"
       set -gx VUMC_VAULT_TOKEN (command $awsvault exec $aws_profile -- $vault_bin login -field=token -method aws -path=$vault_aws_path -address=https://$vault_fqdn header_value=$vault_fqdn role=$vault_aws_role)
 
     case skj
-      set vault_fqdn (_vault_fqdn home)
+      set vault_fqdn (_vault_fqdn skj)
       set user (command whoami)
 
-      set -gx HOME_VAULT_TOKEN (command $vault_bin login -field token -address=https://$vault_fqdn -method=userpass username=$user password=(command security find-generic-password -a $user -s $vault_fqdn -w))
+      set -gx HOME_VAULT_TOKEN (command $vault_bin login -field token -address=https://$vault_fqdn -method=userpass username=$user password=(command op item get 'Vault - Home' --fields label=password))
 
   end
 
@@ -82,7 +82,7 @@ function _vault_fqdn -d "maps vault instance name to fqdn"
   switch $argv[1]
     case vumc
       echo "vault.cloudservices.aws.vumc.cloud"
-    case home
+    case skj
       echo "vault.skj.dev"
     case "*"
       echo "none"
