@@ -32,7 +32,7 @@ function awscreds -d "generate aws credentials for specific profiles"
       set secrets_engine aws
       set vault_aws_role admin
       set fqdn (_vault_fqdn $_flag_instance)
-      set aws_profile_credentials "$HOME/.aws/credentials.default"
+      set aws_profile_credentials "$HOME/.aws/credentials.sean"
 
       if set -q HOME_VAULT_TOKEN
         _vault_generate_token $_flag_instance

@@ -1,3 +1,3 @@
-function emacs --wraps='/usr/local/bin/emacs -nw' --description 'alias emacs /usr/local/bin/emacs -nw'
-  /usr/local/bin/emacs -nw $argv; 
+function emacs --wraps='/opt/homebrew/bin/emacs -nw' --description 'alias emacs /opt/homebrew/bin/emacs -nw'
+  /opt/homebrew/bin/emacs -nw $argv; 
 end
