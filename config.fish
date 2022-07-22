@@ -12,6 +12,9 @@ if status is-interactive
       if test -f /opt/homebrew/share/autojump/autojump.fish
         source /opt/homebrew/share/autojump/autojump.fish
       end
+      if test -f /opt/homebrew/opt/asdf/libexec/asdf.fish
+        source /opt/homebrew/opt/asdf/libexec/asdf.fish
+      end
   end
 
 end
@@ -27,7 +30,6 @@ set -x AWS_REGION us-east-1
 set -x AWS_DEFAULT_REGION us-east-1
 set -x GPG_TTY (tty) # fix GPG signing with git
 set -x OPENFAAS_URL https://gw.skj.dev
-set -x SSH_AUTH_SOCK "~/.1password/agent.sock"
+set -x SSH_AUTH_SOCK "/Users/sean/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 
-# asdf
-source /opt/homebrew/opt/asdf/libexec/asdf.fish
+
